@@ -4,7 +4,7 @@ A script of Go1.7 binary package generator, with a detail example.
 # How to use it
 1. Specify generatedDirs and projectName(which should be the deploy.sh 's parent directory name) in deploy.sh. Pay attention ! For projectName (which you want to use your binary package) you have to indicate all the projectName where you want to , for example `github.com/yonghaowu/myProject`.
 2. Execute ```$  ./deploy.sh```
-3. Delete your framework implementation (source code of your binary package) and move your binary package directory in the project when you want to use your binary package (example in : `$GOPATH/src/github.com/yonghaowu/myProject`).
+3. Delete your framework implementation (source code of your binary package) and move your binary package directory (with the `packageName-import.go`) in the project when you want to use your binary package (example in : `$GOPATH/src/github.com/yonghaowu/myProject`).
 4. Pack the .a files for your clients, which should be in $GOPATH/pkg/YourProjectName.
 
 # Reference

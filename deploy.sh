@@ -26,8 +26,8 @@ for generatedDir in ${generatedDirs[@]}; do
             #generate .go files
             IFS='/ ' read -ra array <<< $frameworkDir
             packagename="${array[@]: -1:1}"
-            echo  "generate $frameworkDir/$packagename.go"
-            echo "//go:binary-only-package\n\npackage $packagename" > "$frameworkDir/$packagename.go"
+            echo  "generate $frameworkDir/$packagename-import.go"
+            echo "//go:binary-only-package\n\npackage $packagename" > "$frameworkDir/$packagename-import.go"
         else
             cd -
         fi
