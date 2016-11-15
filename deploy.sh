@@ -34,7 +34,7 @@ for generatedDir in ${generatedDirs[@]}; do
             IFS='/ ' read -ra array <<< $frameworkDir
             packagename="${array[@]: -1:1}"
             echo  "generate $frameworkDir/$packagename.go"
-            echo -e "//go:binary-only-package\n\npackage $packagename" > "$frameworkDir/$packagename.go"
+            echo "//go:binary-only-package\n\npackage $packagename" > "$frameworkDir/$packagename.go"
         else
             cd -
         fi
