@@ -11,17 +11,10 @@ echo $pkgSystemName
 
 pkgDirectory=$GOPATH/pkg/$pkgSystemName/$projectName
 echo $pkgDirectory
-fakeGoPackagesPath=fakeGoPackages/$projectName
-rm -Rf $fakeGoPackagesPath
 rm -Rf $pkgDirectory
-mkdir -p $fakeGoPackagesPath
 for generatedDir in ${generatedDirs[@]}; do
     frameworkDirs=`find $generatedDir -type d`
     for frameworkDir in $frameworkDirs; do
-
-        mkdir -p $fakeGoPackagesPath/$frameworkDir
-
-
         #generate .a files
         echo "generate $frameworkDir.a"
         echo "CDIN $frameworkDir"
@@ -33,8 +26,8 @@ for generatedDir in ${generatedDirs[@]}; do
             #generate .go files
             IFS='/ ' read -ra array <<< $frameworkDir
             packagename="${array[@]: -1:1}"
-            echo  "generate $fakeGoPackagesPath/$frameworkDir/$packagename.go"
-            echo -e "//go:binary-only-package\n\npackage $packagename" > "$fakeGoPackagesPath/$frameworkDir/$packagename.go"
+            echo  "generate $frameworkDir/$packagename-import.go"
+            echo "//go:binary-only-package\n\npackage $packagename" > "$frameworkDir/$packagename-import.go"
         else
             cd -
         fi
